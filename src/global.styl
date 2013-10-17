@@ -1,0 +1,9 @@
+image-width(path)
+  return image-size(path)[0]
+
+image-height(path)
+  return image-size(path)[1]
+
+image-background(path, scale=1.0)
+  background-image url(path)
+  background-size image-width(path)*scale image-height(path)*scale

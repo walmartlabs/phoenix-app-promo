@@ -1,0 +1,96 @@
+$appIconSize = 58px
+$basePadding = 10px
+
+$promoBackgroundColor = #353535
+$promoTextColor = #ccc
+$appIconColor = #76B91E
+
+$promoFontBig = 1.07rem
+$promoFontMedium = 0.9rem
+$promoFontSmall = 0.81rem
+
+.app-promo
+  position relative
+  z-index 100
+  display flex
+  padding $basePadding ($basePadding / 2) $basePadding 0
+
+  background linear-gradient(top, $promoBackgroundColor, darken($promoBackgroundColor, 40%))
+  color $promoTextColor
+
+.app-promo-close
+  padding ($basePadding / 2)
+  padding-top 0
+  font-size 1.3rem
+  font-weight bold
+  line-height 1
+  background-color rgba(0,0,0,0)
+  color $promoTextColor
+
+.app-icon
+  width $appIconSize
+  height $appIconSize
+  border-radius $basePadding
+  background-color $appIconColor
+
+.app-details
+  flex auto
+  padding 0 $basePadding
+  line-height 1.25
+  font-size $promoFontMedium
+
+  > .app-title
+    font-size $promoFontBig
+    font-weight bold
+
+  > .app-company
+    font-size $promoFontSmall
+
+  > .app-store-info
+    font-weight bold
+
+.app-open-container
+  display flex
+  align-items center
+
+  > .app-open
+    color white
+    background #72b51f
+    border-radius 2px
+    padding ($basePadding / 2) $basePadding
+    font-size $promoFontMedium
+
+.app-rating
+  display flex
+  align-items center
+  font-size $promoFontSmall
+
+.app-stars
+  margin-right ($basePadding / 2)
+  width 49px
+  height 9px
+  display block
+  image-background('images/app-star-rating.png')
+
+  &.rating-50
+    background-position 0 0
+  &.rating-40
+    background-position -10px 0
+  &.rating-30
+    background-position -20px 0
+  &.rating-20
+    background-position -30px 0
+  &.rating-10
+    background-position -40px 0
+  &.rating-0
+    background-position -50px 0
+  &.rating-5
+    background-position -40px -11px
+  &.rating-15
+    background-position -30px -11px
+  &.rating-25
+    background-position -20px -11px
+  &.rating-35
+    background-position -10px -11px
+  &.rating-45
+    background-position 0 -11px
