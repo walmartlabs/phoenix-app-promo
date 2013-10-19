@@ -6,18 +6,21 @@ module.exports = function(grunt) {
         report: 'gzip'
       },
       build: {
-        src: 'src/app-promo.js',
-        dest: 'build/<%= pkg.name %>.min.js'
+        files: {
+          'build/<%= pkg.name %>.min.js': 'src/app-promo.js'
+        }
       }
     },
-    stylus: {
-      compile: {
-        options: {
-          import: ['nib', 'import/global'],
-          urlfunc: 'url',
-        },
+
+    stylusImages: {
+      options: {
+        baseDir: 'src',
+        imports: ['nib', 'import/global']
+      },
+      hdpi: {
+        options: { resolution: '2' },
         files: {
-          'build/<%= pkg.name %>.css': 'src/app-promo.styl'
+          'build/<%= pkg.name %>@2x.css': ['src/app-promo.styl']
         }
       }
     }
@@ -25,5 +28,54 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-stylus');
-  grunt.registerTask('default', ['uglify', 'stylus']);
+
+  grunt.registerMultiTask('stylusImages', function() {
+    var self = this,
+        options = this.options({
+          urlSizeLimit: 1500,
+          resolution: '1'
+        });
+
+    function compile(stylusCode, destFile, callback) {
+      var stylusImages = require('stylus-images'),
+          compiler = stylusImages(stylusCode, {
+            paths: [options.baseDir],
+            images: {
+              limit: options.urlSizeLimit,
+              resolutions: [options.resolution]
+            }
+          });
+
+      compiler.use(require('nib')());
+      compiler.set('compress', true);
+      compiler.import('nib');
+      options.imports.forEach(function(stylesheet) {
+        compiler.import(stylesheet);
+      });
+
+      compiler.render(function(err, data) {
+        if (err) {
+          grunt.log.writeln(err);
+          callback(false);
+          return;
+        }
+
+        grunt.file.write(destFile, data[options.resolution]);
+        callback();
+      });
+    }
+
+    grunt.util.async.forEachSeries(this.files, function(file, next) {
+      var stylusCode = '';
+
+      file.src.forEach(function(fileName) {
+        stylusCode += grunt.file.read(fileName);
+      });
+
+      compile(stylusCode, file.dest, next);
+    });
+
+  });
+
+  grunt.registerTask('default', ['uglify', 'stylusImages']);
 };
