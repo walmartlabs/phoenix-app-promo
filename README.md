@@ -23,6 +23,51 @@ From zero to install:
 
 ## Usage
 
+Phoenix App Promo requires [jQuery](http://jquery.com) or [Zepto](http://zeptojs.com) to run. It
+can be used as a standalone component or with the Phoenix stack.
+
+```
+AppPromo.show({
+  $parentNode: $('header'),
+  playStoreMessage: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit',
+  playStoreUrl: 'https://play.google.com/store/apps/details?id=com.walmart.android',
+  appStoreId: '338137227',
+  appStoreUrl: 'http://itunes.apple.com/us/app/walmart/id338137227?mt=8',
+  appStoreCountry: 'us'
+});
+
+```
+
+The method `show` should take the options hash with the following attributes:
+
+  * `$parentNode` *(mandatory)* - an element (i.e. a jQuery/Zepto collection with element) to a
+    content of which the promo banner will be prepended;
+
+  * `playStoreUrl` - an url to the app page in the Google Play Store. If omitted, the app promo
+    banner will not be shown on Android;
+
+  * `playStoreMessage` - message to show on banner for the Android app;
+
+  * `appStoreId` - an app ID in the iTunes App Store. If omitted, the app promo banner will not be
+    shown on iOS;
+
+  * `appStoreUrl` - an url to the app page in the iTunes App Store. Optional, use to override the
+    default app store url.
+
+  * `appStoreCountry` - a country where an app is available in iTunes App Store. Optional. Default
+    value - `us`.
+
+### To use with Phoenix app
+
+  1. Add Phoenix App Promo dependency to app's `bower.json` file
+     `"phoenix-app-promo": "walmartlabs/phoenix-app-promo#~0.1.0"`
+
+  2. Add references to `src/app-promo.js` and `src/app-promo.styl` into `lumbar.json`
+
+  3. Put the above-mentioned code into Phoenix's `init-complete` event handler.
+
+### To use as a standalone component
+
 To be continued...
 
 # Release Notes
