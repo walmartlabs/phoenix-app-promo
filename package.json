@@ -1,7 +1,7 @@
 {
   "name": "phoenix-app-promo",
-  "version": "0.0.1",
-  "description": "Native app promotion banner",
+  "version": "0.1.0",
+  "description": "Phoenix App Promo Banner",
   "dependencies": {
     "bower": "~1.1.2"
   },
