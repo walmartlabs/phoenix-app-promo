@@ -15,7 +15,7 @@ module.exports = function(grunt) {
     stylusImages: {
       options: {
         baseDir: 'src',
-        imports: ['nib', 'import/global']
+        imports: ['import/global']
       },
       hdpi: {
         options: { resolution: '2' },
@@ -27,7 +27,6 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-stylus');
 
   grunt.registerMultiTask('stylusImages', function() {
     var self = this,
@@ -46,8 +45,8 @@ module.exports = function(grunt) {
             }
           });
 
-      compiler.use(require('nib')());
       compiler.set('compress', true);
+      compiler.use(require('nib')());
       compiler.import('nib');
       options.imports.forEach(function(stylesheet) {
         compiler.import(stylesheet);
@@ -57,19 +56,17 @@ module.exports = function(grunt) {
         if (err) {
           grunt.log.writeln(err);
           callback(false);
-          return;
+        } else {
+          grunt.file.write(destFile, data[options.resolution]);
+          callback();
         }
-
-        grunt.file.write(destFile, data[options.resolution]);
-        callback();
       });
     }
 
     grunt.util.async.forEachSeries(this.files, function(file, next) {
       var stylusCode = '';
-
       file.src.forEach(function(fileName) {
-        stylusCode += grunt.file.read(fileName);
+        stylusCode += '\n' + grunt.file.read(fileName);
       });
 
       compile(stylusCode, file.dest, next);
