@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Page with App Promo Banner</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" type="text/css" href="example-normalize.css">
+    <link rel="stylesheet" type="text/css" href="../build/phoenix-app-promo@2x.css">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  </head>
+  <body>
+    <header></header>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+      laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+      voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+      non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+
+    <script type="text/javascript" src="http://zeptojs.com/zepto.min.js"></script>
+    <script type="text/javascript" src="../build/phoenix-app-promo.min.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        AppPromo.show({
+          $parentNode: $('header'),
+          playStoreMessage: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit',
+          playStoreUrl: 'https://play.google.com/store/apps/details?id=com.walmart.android',
+          appStoreId: '338137227',
+          appStoreUrl: 'http://itunes.apple.com/us/app/walmart/id338137227?mt=8',
+          appStoreCountry: 'us'
+        });
+      });
+    </script>
+  </body>
+</html>
