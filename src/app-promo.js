@@ -1,5 +1,7 @@
 var AppPromo = (function() {
-  var STORAGE_KEY = 'PROMO_HIDE_TIMESTAMP',
+  var isiOS = $.os ? $.os.ios : navigator.userAgent.match(/(iPhone|iPod|iPad)/i),
+      isAndroid = $.os ? $.os.android : navigator.userAgent.toLowerCase().indexOf("android") > -1,
+      STORAGE_KEY = 'PROMO_HIDE_TIMESTAMP',
       STORAGE_TTL = 14 * 24 * 3600 * 1000,    // 2 weeks
       exports = {},
       config;
@@ -103,9 +105,9 @@ var AppPromo = (function() {
     if (options && !isPromoClosed()) {
       config = options;
       config.onUserAction = config.onUserAction || function() { /* NOP */ };
-      if ($.os.android) {
+      if (isAndroid) {
         showAndroidBanner();
-      } else if ($.os.ios) {
+      } else if (isiOS) {
         showiOSBanner();
       }
     }
