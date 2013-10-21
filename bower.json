@@ -8,8 +8,5 @@
     "bower_components",
     "test",
     "tests"
-  ],
-  "dependencies": {
-    "zepto": "~1.0.0"
-  }
+  ]
 }

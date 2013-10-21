@@ -20,7 +20,6 @@ From zero to install:
     git clone git@github.com:walmartlabs/phoenix-app-promo.git
     cd phoenix-app-promo
     npm install
-    bower install
 
 ## Usage
 
