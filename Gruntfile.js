@@ -17,6 +17,11 @@ module.exports = function(grunt) {
         baseDir: 'src',
         imports: ['import/global']
       },
+      mdpi: {
+        files: {
+          'build/<%= pkg.name %>.css': ['src/app-promo.styl']
+        }
+      },
       hdpi: {
         options: { resolution: '2' },
         files: {
@@ -74,5 +79,5 @@ module.exports = function(grunt) {
 
   });
 
-  grunt.registerTask('default', ['uglify', 'stylusImages']);
+  grunt.registerTask('default', ['uglify', 'stylusImages:hdpi']);
 };

@@ -18,6 +18,7 @@ var AppPromo = (function() {
         }
       } catch(err) { /* NOP */ }
     }
+    return false;
   }
 
   function closePromo() {

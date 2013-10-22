@@ -13,6 +13,10 @@ and Android platforms.
 
         npm install -g bower
 
+To build the Phoenix App Promo as a standalone component [Grunt](http://gruntjs.com) is required:
+
+    npm install -g grunt-cli
+
 ## Installation
 
 From zero to install:
@@ -26,6 +30,8 @@ From zero to install:
 Phoenix App Promo requires [jQuery](http://jquery.com) or [Zepto](http://zeptojs.com) to run. It
 can be used as a standalone component or with the Phoenix stack.
 
+The code below shows how to use the Phoenix App Promo banner:
+
 ```
 AppPromo.show({
   $parentNode: $('header'),
@@ -33,7 +39,10 @@ AppPromo.show({
   playStoreUrl: 'https://play.google.com/store/apps/details?id=com.walmart.android',
   appStoreId: '338137227',
   appStoreUrl: 'http://itunes.apple.com/us/app/walmart/id338137227?mt=8',
-  appStoreCountry: 'us'
+  appStoreCountry: 'us',
+  onUserAction: function(action) {
+    alert(action)
+  }
 });
 
 ```
@@ -52,12 +61,19 @@ The method `show` should take the options hash with the following attributes:
     shown on iOS;
 
   * `appStoreUrl` - an url to the app page in the iTunes App Store. Optional, use to override the
-    default app store url.
+    default app store url;
 
   * `appStoreCountry` - a country where an app is available in iTunes App Store. Optional. Default
-    value - `us`.
+    value - `us`;
 
-### To use with Phoenix app
+  * `onUserAction` - a callback function being called on the following user actions and passing the
+    action name as an argument. The action name can be one of the following:
+
+    * `app-promo-closed` - when user closes the banner;
+    * `app-go-to-store` - when user is navigated to the app store;
+    * `app-try-open` - when the native app is attempted to open.
+
+### To use with Phoenix-based app
 
   1. Add Phoenix App Promo dependency to app's `bower.json` file
      `"phoenix-app-promo": "walmartlabs/phoenix-app-promo#~0.1.0"`
@@ -68,8 +84,17 @@ The method `show` should take the options hash with the following attributes:
 
 ### To use as a standalone component
 
-To be continued...
+Build the app with Grunt from `phoenix-app-promo` directory:
+
+    grunt
+
+Note that the default Grunt configuration embeds only a high resolution images for HDPI screens.
+
+Check out the `example` directory to see how to use Phoenix App Promo banner as a standalone
+component.
 
 # Release Notes
 
-To be continued...
+## 0.1.1 / 2013-10-22
+
+  * Initial release.
