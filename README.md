@@ -28,7 +28,7 @@ From zero to install:
 ## Usage
 
 Phoenix App Promo requires [jQuery](http://jquery.com) or [Zepto](http://zeptojs.com) to run. It
-can be used as a standalone component or with the Phoenix stack.
+can be used as a standalone component or included into a project via [phoenix-build](https://github.com/walmartlabs/phoenix-build).
 
 The code below shows how to use the Phoenix App Promo banner:
 
@@ -73,7 +73,7 @@ The method `show` should take the options hash with the following attributes:
     * `app-go-to-store` - when user is navigated to the app store;
     * `app-try-open` - when the native app is attempted to open.
 
-### To use with Phoenix-based app
+### In a project using phoenix-build
 
   1. Add Phoenix App Promo dependency to app's `bower.json` file
      `"phoenix-app-promo": "walmartlabs/phoenix-app-promo#~0.1.0"`
@@ -82,7 +82,7 @@ The method `show` should take the options hash with the following attributes:
 
   3. Put the above-mentioned code into Phoenix's `init-complete` event handler.
 
-### To use as a standalone component
+### As a standalone component
 
 Build the app with Grunt from `phoenix-app-promo` directory:
 
