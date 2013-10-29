@@ -43,19 +43,26 @@ var AppPromo = (function() {
     return $el;
   }
 
-  function createBanner($details, onOpenClick) {
+  function createBanner($details, storeUrl) {
+    function onOpen() {
+      if (config.loadingIndicator) {
+        var $open = $('.app-open'),
+            text = $open.html();
+
+        // Show spinner on the button for 2 seconds as navigation to the store through any Ad-X like
+        // proxy can take a considerable time
+        $open.html(div('app-open-spinner'));
+        setTimeout(function() { $open.html(text); }, 2000);
+      }
+      config.onUserAction('app-go-to-store');
+      window.location = storeUrl;
+    }
+
     return div('app-promo',
       tag('button', 'app-promo-close', String.fromCharCode(0x2573)).on('click', closePromo),
       div('app-icon'),
       $details,
-      div('app-open-container', tag('button', 'app-open', 'OPEN').on('click', onOpenClick)));
-  }
-
-  function goToStore(url) {
-    return function() {
-      config.onUserAction('app-go-to-store');
-      window.location = url;
-    }
+      div('app-open-container', tag('button', 'app-open', 'OPEN').on('click', onOpen)));
   }
 
   function showAndroidBanner() {
@@ -64,7 +71,7 @@ var AppPromo = (function() {
           div('app-details',
             tag('p', '', config.playStoreMessage),
             tag('p', 'app-store-info', 'Free - on the Google Play'));
-      createBanner(appDetails, goToStore(config.playStoreUrl)).prependTo(config.$parentNode);
+      createBanner(appDetails, config.playStoreUrl).prependTo(config.$parentNode);
     }
   }
 
@@ -88,7 +95,7 @@ var AppPromo = (function() {
                 tag('span', '', '(' + appInfo.userRatingCount + ')'))),
             tag('p', 'app-store-info', 'Free - on the App Store'));
 
-        createBanner(appDetails, goToStore(config.appStoreUrl)).prependTo(config.$parentNode);
+        createBanner(appDetails, config.appStoreUrl).prependTo(config.$parentNode);
       }
     });
   }

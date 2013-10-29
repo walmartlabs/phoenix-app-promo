@@ -54,11 +54,29 @@ $promoFontSmall = 0.81rem
   align-items center
 
   > .app-open
+    width 54px
     color white
     background #72b51f
     border-radius 2px
-    padding ($basePadding / 2) $basePadding
+    padding ($basePadding / 2) 0
     font-size $promoFontMedium
+
+.app-open-spinner
+  height 15px
+  width @height
+  margin 0 auto
+  animation rotation 0.7s infinite linear
+  border-top 2px solid rgba(255, 255, 255, 1)
+  border-left 2px solid rgba(255, 255, 255, .3)
+  border-right 2px solid rgba(255, 255, 255, .3)
+  border-bottom 2px solid rgba(255, 255, 255, .3)
+  border-radius 100%
+
+@keyframes rotation
+  from
+    transform rotate(0deg)
+  to
+    transform rotate(359deg)
 
 .app-rating
   display flex
