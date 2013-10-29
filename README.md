@@ -52,6 +52,9 @@ The method `show` should take the options hash with the following attributes:
   * `$parentNode` *(mandatory)* - an element (i.e. a jQuery/Zepto collection with element) to a
     content of which the promo banner will be prepended;
 
+  * `loadingIndicator` - a flag specifying whether or not to show the loading indicator on an "Open"
+    button. Optional. When truthy, the loading indicator will be shown.
+
   * `playStoreUrl` - an url to the app page in the Google Play Store. If omitted, the app promo
     banner will not be shown on Android;
 
@@ -93,6 +96,14 @@ Check out the `example` directory to see how to use Phoenix App Promo banner as 
 component.
 
 # Release Notes
+
+## 0.2.0 / 2013-10-30
+
+  * Do not try to open an app on iOS, instead navigate an user directly to the App Store.
+
+  * Remove an `app-try-open` user action (see [Usage][], info about `onUserAction`)
+
+  * Add optional inline loading indicator on "Open" button
 
 ## 0.1.1 / 2013-10-22
 
