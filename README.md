@@ -101,7 +101,7 @@ component.
 
   * Do not try to open an app on iOS, instead navigate an user directly to the App Store.
 
-  * Remove an `app-try-open` user action (see [Usage][], info about `onUserAction`)
+  * Remove an `app-try-open` user action (see [Usage](#usage), info about `onUserAction`)
 
   * Add optional inline loading indicator on "Open" button
 
