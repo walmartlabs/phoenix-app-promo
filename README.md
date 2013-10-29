@@ -70,8 +70,7 @@ The method `show` should take the options hash with the following attributes:
     action name as an argument. The action name can be one of the following:
 
     * `app-promo-closed` - when user closes the banner;
-    * `app-go-to-store` - when user is navigated to the app store;
-    * `app-try-open` - when the native app is attempted to open.
+    * `app-go-to-store` - when user is navigated to the app store
 
 ### In a project using phoenix-build
 
