@@ -54,7 +54,7 @@ $promoFontSmall = 0.81rem
   align-items center
 
   > .app-open
-    width 54px
+    width 4.5em
     color white
     background #72b51f
     border-radius 2px
@@ -62,7 +62,9 @@ $promoFontSmall = 0.81rem
     font-size $promoFontMedium
 
 .app-open-spinner
-  height 15px
+  spinnerSize = 15px
+
+  height spinnerSize
   width @height
   margin 0 auto
   animation rotation 0.7s infinite linear
@@ -70,7 +72,11 @@ $promoFontSmall = 0.81rem
   border-left 2px solid rgba(255, 255, 255, .3)
   border-right 2px solid rgba(255, 255, 255, .3)
   border-bottom 2px solid rgba(255, 255, 255, .3)
-  border-radius 100%
+  // WARN: border-radius doesn't work on Android 2.x but specifying radius for each corner does
+  border-top-left-radius spinnerSize
+  border-top-right-radius spinnerSize
+  border-bottom-left-radius spinnerSize
+  border-bottom-right-radius spinnerSize
 
 @keyframes rotation
   from
