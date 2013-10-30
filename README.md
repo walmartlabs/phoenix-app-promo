@@ -35,6 +35,7 @@ The code below shows how to use the Phoenix App Promo banner:
 ```
 AppPromo.show({
   $parentNode: $('header'),
+  openAnimationDuration: 2000,
   playStoreMessage: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit',
   playStoreUrl: 'https://play.google.com/store/apps/details?id=com.walmart.android',
   appStoreId: '338137227',
