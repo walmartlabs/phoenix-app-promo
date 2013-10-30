@@ -52,8 +52,8 @@ The method `show` should take the options hash with the following attributes:
   * `$parentNode` *(mandatory)* - an element (i.e. a jQuery/Zepto collection with element) to a
     content of which the promo banner will be prepended;
 
-  * `loadingIndicator` - a flag specifying whether or not to show the loading indicator on an "Open"
-    button. Optional. When truthy, the loading indicator will be shown.
+  * `openAnimationDuration` - a duration (in milliseconds) of an animation on the "Open" button.
+    Optional. If omitted, the animation will not be shown;
 
   * `playStoreUrl` - an url to the app page in the Google Play Store. If omitted, the app promo
     banner will not be shown on Android;
@@ -73,7 +73,7 @@ The method `show` should take the options hash with the following attributes:
     action name as an argument. The action name can be one of the following:
 
     * `app-promo-closed` - when user closes the banner;
-    * `app-go-to-store` - when user is navigated to the app store
+    * `app-promo-open` - when user is navigated to the app store
 
 ### In a project using phoenix-build
 
@@ -103,7 +103,9 @@ component.
 
   * Remove an `app-try-open` user action (see [Usage](#usage), info about `onUserAction`)
 
-  * Add optional inline loading indicator on "Open" button
+  * Rename an `app-go-to-store` user action to `app-promo-open`
+
+  * Add optional inline loading indicator with configurable duration on the "Open" button
 
 ## 0.1.1 / 2013-10-22
 
