@@ -45,16 +45,16 @@ var AppPromo = (function() {
 
   function createBanner($details, storeUrl) {
     function onOpen() {
-      if (config.loadingIndicator) {
+      if (config.openAnimationDuration) {
         var $open = $('.app-open'),
             text = $open.html();
 
         // Show spinner on the button for 2 seconds as navigation to the store through any Ad-X like
         // proxy can take a considerable time
         $open.html(div('app-open-spinner'));
-        setTimeout(function() { $open.html(text); }, 2000);
+        setTimeout(function() { $open.html(text); }, config.openAnimationDuration);
       }
-      config.onUserAction('app-go-to-store');
+      config.onUserAction('app-promo-open');
       window.location = storeUrl;
     }
 
