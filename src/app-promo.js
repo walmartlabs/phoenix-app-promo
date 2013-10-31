@@ -43,12 +43,26 @@ var AppPromo = (function() {
     return $el;
   }
 
-  function createBanner($details, onOpenClick) {
+  function createBanner($details, storeUrl) {
+    function onOpen() {
+      if (config.openAnimationDuration) {
+        var $open = $('.app-open'),
+            text = $open.html();
+
+        // Show spinner on the button for 2 seconds as navigation to the store through any Ad-X like
+        // proxy can take a considerable time
+        $open.html(div('app-open-spinner'));
+        setTimeout(function() { $open.html(text); }, config.openAnimationDuration);
+      }
+      config.onUserAction('app-promo-open');
+      window.location = storeUrl;
+    }
+
     return div('app-promo',
       tag('button', 'app-promo-close', String.fromCharCode(0x2573)).on('click', closePromo),
       div('app-icon'),
       $details,
-      div('app-open-container', tag('button', 'app-open', 'OPEN').on('click', onOpenClick)));
+      div('app-open-container', tag('button', 'app-open', 'OPEN').on('click', onOpen)));
   }
 
   function showAndroidBanner() {
@@ -57,11 +71,7 @@ var AppPromo = (function() {
           div('app-details',
             tag('p', '', config.playStoreMessage),
             tag('p', 'app-store-info', 'Free - on the Google Play'));
-
-      createBanner(appDetails, function() {
-        config.onUserAction('app-go-to-store');
-        window.location = config.playStoreUrl;
-      }).prependTo(config.$parentNode);
+      createBanner(appDetails, config.playStoreUrl).prependTo(config.$parentNode);
     }
   }
 
@@ -76,7 +86,6 @@ var AppPromo = (function() {
     $.getJSON(url, function(data) {
       if (data && data.results && data.results[0]) {
         var appInfo = data.results[0];
-
         var appDetails = div('app-details',
             tag('h4', 'app-title', appInfo.trackName),
             tag('p', 'app-company', appInfo.artistName),
@@ -86,18 +95,7 @@ var AppPromo = (function() {
                 tag('span', '', '(' + appInfo.userRatingCount + ')'))),
             tag('p', 'app-store-info', 'Free - on the App Store'));
 
-        createBanner(appDetails, function(event) {
-          // Navigate directly to an app if the app is installed and app url scheme starts with the
-          // app name. Otherwise navigate to the app page in the App Store.
-          // WARN: if the app is not installed the Safari will show "Invalid URL" popup for 0.1 sec
-          // before opening an App Store
-          setTimeout(function() {
-            config.onUserAction('app-go-to-store');
-            window.location = config.appStoreUrl || appInfo.trackViewUrl;
-          }, 100);
-          config.onUserAction('app-try-open');
-          window.location = appInfo.trackName + '://';
-        }).prependTo(config.$parentNode);
+        createBanner(appDetails, config.appStoreUrl).prependTo(config.$parentNode);
       }
     });
   }
