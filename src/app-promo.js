@@ -7,8 +7,9 @@ var AppPromo = (function() {
       config;
 
   function isPromoClosed() {
-    if (localStorage) {
-      try {
+    // Prevent security error when accessing localStorage on iOS 7 with disabled cookies
+    try {
+      if (localStorage) {
         var timestamp = parseInt(localStorage.getItem(STORAGE_KEY), 10);
         if (timestamp) {
           if (Date.now() - timestamp < STORAGE_TTL) { return true; }
@@ -16,19 +17,17 @@ var AppPromo = (function() {
           // Banner was hidden a while ago so show it again
           localStorage.removeItem(STORAGE_KEY);
         }
-      } catch(err) { /* NOP */ }
-    }
+      }
+    } catch(err) { /* NOP */ }
     return false;
   }
 
   function closePromo() {
     $('.app-promo').remove();
     config.onUserAction('app-promo-closed');
-    if (localStorage) {
-      try {
-        localStorage.setItem(STORAGE_KEY, Date.now());
-      } catch(err) { /* NOP */ }
-    }
+    try {
+      localStorage && localStorage.setItem(STORAGE_KEY, Date.now());
+    } catch(err) { /* NOP */ }
   }
 
   function tag(name, cssClass, text) {
