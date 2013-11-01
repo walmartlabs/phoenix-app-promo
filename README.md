@@ -98,6 +98,10 @@ component.
 
 # Release Notes
 
+## 0.2.1 / 2013-11-01
+
+  * Prevent security error when accessing the `localStorage` on iOS 7 with disabled cookies
+
 ## 0.2.0 / 2013-10-30
 
   * Do not try to open an app on iOS, instead navigate an user directly to the App Store.
