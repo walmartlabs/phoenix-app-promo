@@ -1,6 +1,6 @@
 {
   "name": "phoenix-app-promo",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Phoenix App Promo Banner",
   "dependencies": {
     "bower": "~1.1.2"
@@ -8,7 +8,6 @@
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-uglify": "~0.2.2",
-
     "stylus": "0.38.0",
     "nib": "~1.0.0",
     "stylus-images": "~1.0.3"
