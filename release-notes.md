@@ -1,5 +1,9 @@
 # Release Notes
 
+## v0.2.3 - December 6th, 2013
+
+- Add support for new flex syntax - 6261044
+
 ## v0.2.2 - November 21st, 2013
 
 - Add background-color fallback - d2e2b73
