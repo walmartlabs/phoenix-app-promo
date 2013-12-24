@@ -37,9 +37,9 @@ AppPromo.show({
   $parentNode: $('header'),
   openAnimationDuration: 2000,
   playStoreMessage: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit',
-  playStoreUrl: 'https://play.google.com/store/apps/details?id=com.walmart.android',
-  appStoreId: '338137227',
-  appStoreUrl: 'http://itunes.apple.com/us/app/walmart/id338137227?mt=8',
+  playStoreUrl: 'https://play.google.com/store/apps/details?id=com.mycompany.myapp.android',
+  appStoreId: '123456789',
+  appStoreUrl: 'http://itunes.apple.com/us/app/mycompany/id123456789?mt=8',
   appStoreCountry: 'us',
   onUserAction: function(action) {
     alert(action)
@@ -95,4 +95,7 @@ Note that the default Grunt configuration embeds only a high resolution images f
 
 Check out the `example` directory to see how to use Phoenix App Promo banner as a standalone
 component.
+
+**Please note** that store IDs and urls in the example and in the code snippet above are used only
+for the illustration purposes and do not belong to any real app.
 
