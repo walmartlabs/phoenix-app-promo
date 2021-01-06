@@ -1,3 +1,11 @@
+***
+# NOTICE:
+
+## This repository has been archived and is not supported.
+
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+***
+
 # Phoenix App Promo
 
 Phoenix App Promo is a library allowing to show an application promo banner with the look & feel
